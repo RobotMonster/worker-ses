@@ -1,0 +1,36 @@
+{
+  "name": "yack-worker-ses",
+  "version": "1.0.0",
+  "description": "This worker processes SES emails",
+  "main": "sender.js",
+  "scripts": {
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "aws-lambda": "^0.1.2",
+    "aws-sdk": "^2.662.0",
+    "axios": "^0.19.2",
+    "jimp": "^0.10.3",
+    "source-map-support": "^0.5.10",
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.17",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/axios": "^0.14.0",
+    "@types/jimp": "^0.2.28",
+    "@types/node": "^10.14.22",
+    "@types/uuid": "^7.0.3",
+    "eslint": "^6.6.0",
+    "serverless-webpack": "^5.2.0",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.20.0",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "author": "Jo du Plessis",
+  "license": "ISC"
+}
