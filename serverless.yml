@@ -8,13 +8,7 @@ provider:
   name: aws
   runtime: nodejs10.x
   memorySize: 512
-  region: eu-central-1
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - sqs:SendMessage
-      Resource:
-        - Fn::GetAtt: [ receiverQueueImage, Arn ]
+  region: us-west-2
 
 functions:
   receiver:
@@ -22,20 +16,4 @@ functions:
     memorySize: 512
     timeout: 10
     environment:
-      AWS_S3_ACCESS_KEY_ID: ${env:AWS_S3_ACCESS_KEY_ID}
-      AWS_S3_SECRET_ACCESS_KEY: ${env:AWS_S3_SECRET_ACCESS_KEY}
-      AWS_S3_ENDPOINT: ${env:AWS_S3_ENDPOINT}
-      AWS_S3_BUCKET: ${env:AWS_S3_BUCKET}
       API_PATH: ${env:API_PATH}
-    events:
-      - sqs:
-          arn:
-            Fn::GetAtt:
-              - receiverQueueImage
-              - Arn
-resources:
-  Resources:
-    receiverQueueImage:
-      Type: AWS::SQS::Queue
-      Properties:
-        QueueName: receiverQueueImage
