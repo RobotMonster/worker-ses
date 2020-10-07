@@ -18,7 +18,11 @@ const receiver: any = async (event: any, context: any, callback: any): Promise<a
     const messageId = headers.filter(header => header.name.toUpperCase() == "MESSAGE-ID")[0];
     const { from, date, to, subject } = mail.commonHeaders;
 
+    // These are the values we get from SES
+    // NO BODY! 😭
     console.log({
+      timestamp,
+      source,
       messageId,
       inReplyTo,
       contentId,
@@ -30,6 +34,7 @@ const receiver: any = async (event: any, context: any, callback: any): Promise<a
       date,
     });
 
+    // Makes a webhook request
     const postdata = JSON.stringify({ mail })
     const postoptions = {
       hostname: process.env.API_PATH.replace('https://',''),
@@ -42,7 +47,7 @@ const receiver: any = async (event: any, context: any, callback: any): Promise<a
       }
     }
 
-    const httpdata = await new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       var request = https.request(postoptions, (res) => {
           const body = [];
 
@@ -57,20 +62,14 @@ const receiver: any = async (event: any, context: any, callback: any): Promise<a
     })
 
     // END
-    console.log(httpdata, postoptions)
     context.done()
-    callback(null, {
-      from: from[0],
-      to: to[0],
-      subject,
-      date,
-      timestamp,
-      source,
-      messageId,
-    });
+
+    // And
+    callback(null);
+
+    // Just in case
     return true
   } catch (e) {
-    console.log(e)
     return false
   }
 }
