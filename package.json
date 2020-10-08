@@ -1,5 +1,5 @@
 {
-  "name": "yack-worker-ses",
+  "name": "worker-ses",
   "version": "1.0.0",
   "description": "This worker processes SES emails",
   "main": "sender.js",

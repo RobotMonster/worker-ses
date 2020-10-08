@@ -1,5 +1,5 @@
 service:
-  name: yack-worker-ses
+  name: robotmonster-worker-ses
 
 plugins:
   - serverless-webpack
